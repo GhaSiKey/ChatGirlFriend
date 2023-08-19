@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -63,11 +64,17 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void addMessage(String message) {
+    private void addMessage(String message, MessageType messageType) {
         TextView messageTextView = new TextView(this);
         messageTextView.setText(message);
         messageTextView.setTextSize(24);
         messageTextView.setTextColor(this.getResources().getColor(R.color.white));
+
+        // 设置对齐方式
+        int gravity = (messageType == MessageType.USER) ? Gravity.END : Gravity.START;
+        messageTextView.setGravity(gravity);
+
+        // 插入对话
         messageLinearLayout.addView(messageTextView);
 
         // 滚动到最底部
@@ -82,8 +89,8 @@ public class MainActivity extends AppCompatActivity {
     private void sendMessage() {
         String message = inputEditText.getText().toString().trim();
         if (!message.isEmpty()) {
-            addMessage("ME: " + message + "\n");
-            addMessage("33: Loading...");
+            addMessage(message + ": ME\n", MessageType.USER);
+            addMessage("33: Loading...", MessageType.GPT);
             chatGptReply(message);
             inputEditText.setText("");
         } else {
@@ -105,12 +112,11 @@ public class MainActivity extends AppCompatActivity {
                     vitsManager.generateSound(responseText);
                 }
                 removeLastMessage();
-                addMessage("33: " + responseText + "\n");
+                addMessage("33: " + responseText + "\n", MessageType.GPT);
             }
             return null;
         });
     }
-
 
     private void sendChatGPTMsg(String msg) {
         ChatGPTNetService chatGPTNetService = new ChatGPTNetService(MainActivity.this);
@@ -120,5 +126,10 @@ public class MainActivity extends AppCompatActivity {
             System.out.println(chatGPTResponseData);
             return null;
         });
+    }
+
+    enum MessageType {
+        USER,
+        GPT
     }
 }
