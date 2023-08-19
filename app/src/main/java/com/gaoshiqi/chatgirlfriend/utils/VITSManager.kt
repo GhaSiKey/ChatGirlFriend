@@ -48,7 +48,7 @@ class VITSManager(val context: Context) {
         }
 
         // 获取模型路径
-        val basePath = finalModelList[1].characterVitsPath
+        val basePath = finalModelList[0].characterVitsPath
         val rootFiles = getVITSModelFiles(basePath)
         // 导入配置
         vitsHelper.loadConfigs(rootFiles?.find { it.name.endsWith("json") }?.absolutePath) { isSuccess ->
