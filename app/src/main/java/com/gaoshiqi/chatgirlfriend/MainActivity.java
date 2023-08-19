@@ -87,8 +87,7 @@ public class MainActivity extends AppCompatActivity {
         String message = inputEditText.getText().toString().trim();
         if (!message.isEmpty()) {
             addMessage(message, Msg.MessageType.USER);
-            sendButton.setEnabled(false);
-            progressBar.setVisibility(View.VISIBLE);
+            setLoadingStatus(true);
             chatGptReply(message);
             inputEditText.setText("");
         } else {
@@ -104,11 +103,21 @@ public class MainActivity extends AppCompatActivity {
                     vitsManager.generateSound(responseText);
                 }
                 addMessage(responseText, Msg.MessageType.GPT);
-                sendButton.setEnabled(true);
-                progressBar.setVisibility(View.GONE);
+                setLoadingStatus(false);
             }
             return null;
         });
+    }
+
+    private void setLoadingStatus(Boolean flag) {
+        // true-加载中  false-不加载
+        if (flag) {
+            progressBar.setVisibility(View.VISIBLE);
+            sendButton.setVisibility(View.GONE);
+        } else {
+            progressBar.setVisibility(View.GONE);
+            sendButton.setVisibility(View.VISIBLE);
+        }
     }
 
 }

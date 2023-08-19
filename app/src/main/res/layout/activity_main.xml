@@ -35,12 +35,7 @@
                 android:textColor="@color/black"
                 tools:ignore="MissingConstraints" />
 
-            <ProgressBar
-                android:id="@+id/loadingProgressBar"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:visibility="gone"/>
+
 
         </LinearLayout>
 
@@ -112,8 +107,9 @@
         <EditText
             android:id="@+id/inputEditText"
             android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_weight="0.75"
             android:layout_height="wrap_content"
+            android:padding="8dp"
             android:hint="愉快的和33娘聊天吧～"
             android:imeOptions="actionDone"
             android:singleLine="true" />
@@ -121,10 +117,22 @@
         <!-- 发送按钮 -->
         <Button
             android:id="@+id/sendButton"
-            android:layout_width="wrap_content"
+            android:layout_weight="0.25"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:padding="8dp"
             android:layout_toEndOf="@id/inputEditText"
             android:text="发送" />
+
+        <ProgressBar
+            android:id="@+id/loadingProgressBar"
+            android:layout_weight="0.25"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:visibility="gone"/>
+
+
     </LinearLayout>
 
 
