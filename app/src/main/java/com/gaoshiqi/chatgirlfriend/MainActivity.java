@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.Toast;
 
@@ -35,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
 
     private Switch voiceSwitch;
 
+    private ProgressBar progressBar;
+
     private ChatGPTNetService chatGPTNetService;
 
     private VITSManager vitsManager;
@@ -48,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         inputEditText = findViewById(R.id.inputEditText);
         sendButton = findViewById(R.id.sendButton);
         voiceSwitch = findViewById(R.id.switch1);
+        progressBar = findViewById(R.id.loadingProgressBar);
 
         // 初始化recycleView
         data.add(new Msg("泥蚝～我是33娘~", Msg.MessageType.GPT));
@@ -83,6 +87,8 @@ public class MainActivity extends AppCompatActivity {
         String message = inputEditText.getText().toString().trim();
         if (!message.isEmpty()) {
             addMessage(message, Msg.MessageType.USER);
+            sendButton.setEnabled(false);
+            progressBar.setVisibility(View.VISIBLE);
             chatGptReply(message);
             inputEditText.setText("");
         } else {
@@ -98,6 +104,8 @@ public class MainActivity extends AppCompatActivity {
                     vitsManager.generateSound(responseText);
                 }
                 addMessage(responseText, Msg.MessageType.GPT);
+                sendButton.setEnabled(true);
+                progressBar.setVisibility(View.GONE);
             }
             return null;
         });

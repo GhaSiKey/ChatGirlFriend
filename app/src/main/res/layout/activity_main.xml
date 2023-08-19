@@ -18,21 +18,39 @@
         android:paddingStart="12dp"
         android:paddingEnd="12dp">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_weight="0.75"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:padding="16dp"
-            android:text="ChatGPT 33娘"
-            android:textAlignment="center"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/black"
-            tools:ignore="MissingConstraints" />
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:padding="16dp"
+                android:text="ChatGPT 33娘"
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/black"
+                tools:ignore="MissingConstraints" />
+
+            <ProgressBar
+                android:id="@+id/loadingProgressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+
 
         <Switch
             android:id="@+id/switch1"
-            android:layout_width="wrap_content"
+            android:layout_weight="0.25"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:padding="4dp"
             android:text="Voice"
             tools:ignore="UseSwitchCompatOrMaterialXml"
             android:textColor="@color/black"/>
