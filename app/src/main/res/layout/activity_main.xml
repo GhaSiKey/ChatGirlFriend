@@ -87,20 +87,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:padding="16dp">
 
         <!-- 文字输入栏 -->
-
-        <!-- 发送按钮 -->
         <EditText
             android:id="@+id/inputEditText"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:hint="愉快的和33娘聊天吧～"
             android:imeOptions="actionDone"
             android:singleLine="true" />
 
+        <!-- 发送按钮 -->
         <Button
             android:id="@+id/sendButton"
             android:layout_width="wrap_content"
