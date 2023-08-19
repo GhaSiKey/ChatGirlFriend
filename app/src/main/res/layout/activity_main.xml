@@ -64,28 +64,21 @@
         android:layout_below="@+id/titleTextView"
         android:orientation="vertical">
 
+        <!-- 空白 -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.5"
             tools:ignore="MissingConstraints" />
 
-        <!-- 输入框和发送按钮的容器 -->
-        <ScrollView
-            android:id="@+id/messageScrollView"
+        <!-- 消息框 -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.5"
             android:layout_margin="8dp"
-            android:background="#80000000">
-
-            <LinearLayout
-                android:id="@+id/messageLinearLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="8dp" />
-        </ScrollView>
+            android:background="#80000000" />
 
     </LinearLayout>
 
